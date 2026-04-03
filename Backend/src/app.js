@@ -4,7 +4,8 @@ const express = require("express")
 const app = express()
 app.use(express.json())
 const noteModel = require("./models/notes.model")
-
+const cors = require("cors")
+app.use(cors()) //server accepts cross origin request now
 //POST:  /api/notes
 // req.body = {title, description}
 app.post("/api/notes", async (req, res)=>{
