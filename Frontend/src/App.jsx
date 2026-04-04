@@ -7,7 +7,7 @@ function App() {
   const [notes, setnotes] = useState([]);
 
   function fetchNotes() {
-    axios.get("/api/notes").then((res) => {
+    axios.get("http://localhost:3000/api/notes").then((res) => {
       setnotes(res.data.notes); 
     });
   }
@@ -21,7 +21,7 @@ function App() {
     const { title, description } = e.target.elements; 
     console.log(title.value, description.value);
     axios
-      .post("/api/notes", {
+      .post("http://localhost:3000/api/notes", {
         title: title.value,
         description: description.value,
       })
@@ -32,7 +32,7 @@ function App() {
   }
 
   function handleDelete(noteId) {
-    axios.delete("/api/notes/" + noteId).then((res) => {
+    axios.delete("http://localhost:3000/api/notes/" + noteId).then((res) => {
       console.log(res.data); 
       fetchNotes();
     });
@@ -43,7 +43,7 @@ function App() {
     const newDescription = prompt("Enter new description:");
 
     axios
-      .patch("/api/notes/" + noteId, {
+      .patch("http://localhost:3000/api/notes/" + noteId, {
         title: newTitle,
         description: newDescription,
       })
@@ -68,6 +68,7 @@ function App() {
             <div className="note">
               <h1>{note.title}</h1>
               <p>{note.description}</p>
+
               <button
                 onClick={() => {
                   handleDelete(note._id);
