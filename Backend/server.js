@@ -1,10 +1,12 @@
 require('dotenv').config()
-const app = require("./src/app");
-const mongoose = require("mongoose");
+
+const app = require("./src/app")
 const connectToDB = require("./src/config/databse")
 
-connectToDB();
+connectToDB()
 
-app.listen(3000, () => {
-  console.log("server is runnin");
-});
+const PORT = process.env.PORT || 3000
+
+app.listen(PORT, () => {
+  console.log("server is running on port", PORT)
+})

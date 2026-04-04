@@ -7,7 +7,7 @@ function App() {
   const [notes, setnotes] = useState([]);
 
   function fetchNotes() {
-    axios.get("http://localhost:3000/api/notes").then((res) => {
+    axios.get("/api/notes").then((res) => {
       setnotes(res.data.notes); 
     });
   }
@@ -21,7 +21,7 @@ function App() {
     const { title, description } = e.target.elements; 
     console.log(title.value, description.value);
     axios
-      .post("http://localhost:3000/api/notes", {
+      .post("/api/notes", {
         title: title.value,
         description: description.value,
       })
@@ -32,7 +32,7 @@ function App() {
   }
 
   function handleDelete(noteId) {
-    axios.delete("http://localhost:3000/api/notes/" + noteId).then((res) => {
+    axios.delete("/api/notes/" + noteId).then((res) => {
       console.log(res.data); 
       fetchNotes();
     });
@@ -43,7 +43,7 @@ function App() {
     const newDescription = prompt("Enter new description:");
 
     axios
-      .patch("http://localhost:3000/api/notes/" + noteId, {
+      .patch("/api/notes/" + noteId, {
         title: newTitle,
         description: newDescription,
       })
